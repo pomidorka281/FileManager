@@ -201,7 +201,7 @@ class File_manager:
         self.home_dir = path
 
     def __check_Path__(self, dest):
-        if os.path.abspath(dest) in self.home_dir_Path:
+        if self.home_dir_Path in Path(os.path.abspath(dest)).parents or self.home_dir_Path == Path(os.path.abspath(dest)):
             return True
         else:
             return False
