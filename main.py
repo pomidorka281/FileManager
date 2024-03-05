@@ -34,42 +34,43 @@ class File_manager:
 15. Изменить конфиг'''  # возможности файлового менеджера
 
     def main(self):
-        self.line = input('Введите команду: ').split()
-        self.command = self.commands.index(self.line[0]) + 1
-        if not (1 <= self.command <= 15):
-            print('Вы ввели неправильную команду!')
-            return 1
-        elif self.command == 11:
-            self.flag = False
-            return 1
-        elif self.command == 1:
-            return self.__createDirectory__()
-        elif self.command == 2:
-            return self.__removeDirectory__()
-        elif self.command == 3:
-            return self.__cd__()
-        elif self.command == 4:
-            return self.__touch__()
-        elif self.command == 5:
-            return self.__nano__()
-        elif self.command == 6:
-            return self.__cat__()
-        elif self.command == 7:
-            return self.__removeFile__()
-        elif self.command == 8:
-            return self.__copyFile__()
-        elif self.command == 9:
-            return self.__movingFile__()
-        elif self.command == 10:
-            return self.__renameFile__()
-        elif self.command == 12:
-            print("\n".join(i for i in os.listdir()), end='\n\n')
-        elif self.command == 13:
-            print(self.__getPath__())
-        elif self.command == 14:
-            print(self.__getInfo__())
-        elif self.command == 15:
-            return self.__changecfg__()
+        while self.flag:
+            self.line = input('Введите команду: ').split()
+            self.command = self.commands.index(self.line[0]) + 1
+            if not (1 <= self.command <= 15):
+                print('Вы ввели неправильную команду!')
+                return 1
+            elif self.command == 11:
+                self.flag = False
+                return 1
+            elif self.command == 1:
+                return self.__createDirectory__()
+            elif self.command == 2:
+                return self.__removeDirectory__()
+            elif self.command == 3:
+                return self.__cd__()
+            elif self.command == 4:
+                return self.__touch__()
+            elif self.command == 5:
+                return self.__nano__()
+            elif self.command == 6:
+                return self.__cat__()
+            elif self.command == 7:
+                return self.__removeFile__()
+            elif self.command == 8:
+                return self.__copyFile__()
+            elif self.command == 9:
+                return self.__movingFile__()
+            elif self.command == 10:
+                return self.__renameFile__()
+            elif self.command == 12:
+                print("\n".join(i for i in os.listdir()), end='\n\n')
+            elif self.command == 13:
+                print(self.__getPath__())
+            elif self.command == 14:
+                print(self.__getInfo__())
+            elif self.command == 15:
+                return self.__changecfg__()
 
     def __createDirectory__(self):
         self.name = self.line[1]
@@ -194,6 +195,5 @@ class File_manager:
             return False
 
 
-a = File_manager()  # переделать
-while a.flag:
-    a.main()
+a = File_manager()
+a.main()
