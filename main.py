@@ -7,9 +7,9 @@ from pathlib import Path
 class File_manager:
     def __init__(self):
         self.c = Config()
-        self.home_dir = f'{os.getcwd()}/work_folder'  # полный путь до файла. нужен, чтобы нормально создавать файлы
-        self.home_dir_Path = Path(self.home_dir)
+        self.home_dir = f'{os.getcwd()}/work_folder'  # полный путь до домашней директории
         self.__changecfg__()
+        self.home_dir_Path = Path(self.home_dir)
         os.chdir(f'{self.home_dir}')
         self.commands = ['crdr', 'rmdr', 'chdr', 'crf', 'fillf', 'chf', 'rmf', 'cof', 'mof', 'ref', 'exit', 'list',
                          'path', 'help', 'chcfg']  # команды на ввод
@@ -180,7 +180,7 @@ class File_manager:
         self.name = input('Do you want to change it (you must change it if you do not use OSX)? (y/n): ')
         if self.name.lower() == 'y':
             self.name = input('Type the full path to the directory, which you want work with: ')
-            self.c.work_folder = self.name
+            self.c.set_folder(self.name)
             return self.__setHomedir__(self.name)
         elif self.name.lower() == 'n':
             return 1
