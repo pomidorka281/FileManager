@@ -150,7 +150,13 @@ class File_manager:
         path1 = self.name
         self.name = self.line[2]
         path2 = self.name
-        return shutil.copy(f'{self.home_dir}/{path1}', f'{self.home_dir}/{path2}')
+        try:
+            if self.__check_Path__(path2):
+                return shutil.copy(f'{self.home_dir}/{path1}', f'{self.home_dir}/{path2}')
+            else:
+                print(f'Вы пытаетесь скопировать файл {path1} за пределы рабочей папки!')
+        except FileExistsError:
+            print(f'Файл {path1} не найден!')
 
     def __movingFile__(self):
         os.chdir(self.home_dir)
@@ -158,7 +164,13 @@ class File_manager:
         path1 = self.name
         self.name = self.line[2]
         path2 = self.name
-        return shutil.move(f'{self.home_dir}/{path1}', f'{self.home_dir}/{path2}')
+        try:
+            if self.__check_Path__(path2):
+                return shutil.move(f'{self.home_dir}/{path1}', f'{self.home_dir}/{path2}')
+            else:
+                print(f'Вы пытаетесь переместить файл {path1} за пределы рабочей папки!')
+        except FileExistsError:
+            print(f'Файл {path1} не найден!')
 
     def __renameFile__(self):
         try:
